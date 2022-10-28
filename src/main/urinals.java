@@ -7,15 +7,33 @@ import java.util.Scanner;
 
 public class urinals {
 
-    public static String check = "00000";
+    public static String check;
     static BufferedReader bf;
-    static ArrayList<Integer> ar = new ArrayList<Integer>();
+    static ArrayList<Integer> ar = new ArrayList<>();
 
     public static void main(String[] args) throws IOException {
 
-        openFile();
-        readFile();
-        writeFile();
+        Scanner sc = new Scanner(System.in);
+        while(true){
+            System.out.println("\nEnter the type of Input\n1.Keyboard\n2.File\n(-1 to exit)");
+            int choice = sc.nextInt();
+
+            if (choice == 1) {
+                check = getString();
+                System.out.println("\nNumber of Free Urinals: " + freeUrinals(check));
+            } else if (choice == 2) {
+                openFile();
+                readFile();
+                writeFile();
+            } else if (choice==-1){
+                System.out.println("\nExiting Menu");
+                break;
+            }
+            else {
+                System.out.println("\ninvalid Input");
+            }
+        }
+
     }
 
 
@@ -26,11 +44,11 @@ public class urinals {
 
         int stalls = 0;
 
-        if(str.equals(0)){
+        if(str.equals("0")){
             stalls++;
             return stalls;
         }
-        if(str.equals(1)){
+        if(str.equals("1")){
             return stalls;
         }
 
@@ -76,9 +94,11 @@ public class urinals {
         while((st)!=null){
             if(goodStringLength(st) && goodString(st)) {
                 ar.add(freeUrinals(st));
+            }else{
+                ar.add(-1);
             }
 
-            st = bf.readLine();;
+            st = bf.readLine();
         }
         return 0;
     }
@@ -108,6 +128,7 @@ public class urinals {
 
         Scanner sc = new Scanner(System.in);
         String str;
+        System.out.println("\nEnter the String: ");
         str = sc.next();
         return str;
     }
@@ -115,29 +136,22 @@ public class urinals {
 
     public static boolean goodStringLength(String str){
 
-        if(str.length()>=1 && str.length()<=20)
-            return true;
-        else
-            return false;
+        return str.length() >= 1 && str.length() <= 20;
     }
 
 
     public static boolean goodString(String str){
 
-        if(str.equals(-1))
+        if(str.equals("-1"))
             return false;
-        for(int i=0;i<str.length();i++){
-            if(str.charAt(i)=='0' || str.charAt(i)=='1'){
-                continue;
-            }
-            else
-                return false;
-        }
         if(str.contains("11"))
             return false;
+        for(int i=0;i<str.length();i++){
+            if(!(str.charAt(i)=='0' || str.charAt(i)=='1')) {
+                return false;
+            }
+        }
+
         return true;
     }
-
-
-
 }
