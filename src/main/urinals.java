@@ -10,22 +10,13 @@ public class urinals {
 
     public static void main(String[] args) {
 
-        System.out.println("Enter the string");
-        String a = getString();
-        if(!goodString(a)){
-            System.out.println("-1\nInvalid Input");
-            return;
-        }
-        int free = freeUrinals(a);
-        System.out.println("Free Urinals: "+free);
+
     }
 
 
     public static int freeUrinals(String str) {
 
         int stalls = 0;
-
-
 
         if(str.equals(0)){
             stalls++;

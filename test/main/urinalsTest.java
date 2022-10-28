@@ -33,6 +33,12 @@ class urinalsTest {
         assertTrue(urinals.goodString("0"), "Invalid String");
     }
 
+    @Test
+    void testFreeUrinals(){
+        System.out.println("====== Arshak Shan == TEST FIVE EXECUTED ======");
+        assertEquals(1,urinals.freeUrinals("10001"));
+        assertEquals(0,urinals.freeUrinals("10"));
 
+    }
 
 }
