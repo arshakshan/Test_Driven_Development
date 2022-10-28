@@ -9,6 +9,8 @@ The system returns the number of free urinals currently available after examinin
 
 The urinals.java is placed in the src/main folder. The urinal.dat with the Strings for input for FILE input has also been placed in the src/main folder.
 
+The output files would be stored as resultx.txt in the src/main folder.
+
 Tested Cases Handled:
 -
 - Dummy Test
