@@ -1,22 +1,21 @@
 package main;
 
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class urinals {
 
     public static String check = "00000";
+    static BufferedReader bf;
+    static ArrayList<Integer> ar = new ArrayList<Integer>();
 
+    public static void main(String[] args) throws IOException {
 
-    public static void main(String[] args) {
-
-
-
+        openFile();
+        readFile();
+        writeFile();
     }
 
 
@@ -61,14 +60,49 @@ public class urinals {
 
     public static int openFile(){
 
-        Scanner sc;
         try {
-            BufferedReader bf = new BufferedReader(new FileReader("src/main/urinal.dat"));
+            bf = new BufferedReader(new FileReader("src/main/urinal.dat"));
         } catch (FileNotFoundException e) {
             return -1;
         }
         return 1;
     }
+
+    public static int readFile() throws IOException {
+
+        String st;
+        if((st = bf.readLine())==null)
+            return -1;
+        while((st)!=null){
+            if(goodStringLength(st) && goodString(st)) {
+                ar.add(freeUrinals(st));
+            }
+
+            st = bf.readLine();;
+        }
+        return 0;
+    }
+
+
+    public static int writeFile() throws IOException{
+
+        int counter=1;
+        File fl = new File("src/main/rule.txt");
+        while(fl.exists()){
+            fl = new File("src/main/rule"+counter+".txt");
+            counter++;
+        }
+        FileWriter fw = new FileWriter(fl);
+
+        int fileCounter=0;
+        while(fileCounter<(ar.size())){
+            fw.write(ar.get(fileCounter)+"\n");
+            fileCounter++;
+        }
+        fw.close();
+        return 1;
+    }
+
 
     public static String getString(){
 

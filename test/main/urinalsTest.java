@@ -2,6 +2,8 @@ package main;
 
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -54,5 +56,21 @@ class UrinalsTest {
         System.out.println("====== Arshak Shan == TEST SEVEN EXECUTED (FILE) ======");
         assertEquals(1,urinals.openFile(),"File Not Found");
     }
+
+    @Test
+    void testEmptyFile() throws IOException {
+        System.out.println("====== Arshak Shan == TEST EIGHT EXECUTED (Empty FILE) ======");
+        urinals.openFile();
+        assertEquals(0,urinals.readFile());
+    }
+
+    @Test
+    void testSuccessful() throws IOException {
+        System.out.println("====== Arshak Shan == TEST NINE EXECUTED (Empty FILE) ======");
+        urinals.openFile();
+        urinals.readFile();
+        assertEquals(0,urinals.writeFile());
+    }
+
 
 }
