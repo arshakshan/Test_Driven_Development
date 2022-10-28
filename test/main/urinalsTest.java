@@ -69,7 +69,7 @@ class UrinalsTest {
         System.out.println("====== Arshak Shan == TEST NINE EXECUTED (Empty FILE) ======");
         urinals.openFile();
         urinals.readFile();
-        assertEquals(0,urinals.writeFile());
+        assertEquals(1,urinals.writeFile());
     }
 
 
